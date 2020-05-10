@@ -1,11 +1,18 @@
 {
   "name": "spectrum-ui-vue",
   "version": "0.0.5",
-  "private": true,
+  "private": false,
   "description": "Spectrum CSS UI Kit for VueJS",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "npm run build-lib && npm run build-docs",
+    "build-lib": "vue-cli-service build --target lib --name ../lib/SpectrumUIVue src/lib/index.js",
+    "docs-app": "vue-cli-service build --target app",
+    "docs-static": "node docs-static.js",
+    "docs": "npm run docs-app && npm run docs-static",
+    "docs-serve": "serve dist -l tcp://0.0.0.0:7890",
+    "prepare": "npm run build && npm run docs",
+    "build-watch": "vue-cli-service build --no-clean --watch --mode production --target lib --name ratio src/UI-Plugin.js",
+    "dev": "PORT=7878 vue-cli-service serve"
   },
   "repository": {
     "type": "git",
@@ -27,7 +34,6 @@
     "url": "https://github.com/plugn/spectrum-ui-vue/issues"
   },
   "homepage": "https://github.com/plugn/spectrum-ui-vue#readme",
-
   "dependencies": {
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
@@ -41,7 +47,9 @@
     "npm-run-all": "^4.1.5",
     "serve": "^11.0.2",
     "shelljs": "^0.8.4",
+    "terser-webpack-plugin": "^3.0.1",
     "v-click-outside": "^3.0.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack-chain": "^6.4.0"
   }
 }
