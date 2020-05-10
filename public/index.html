@@ -5,9 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+<!--    <title><%= htmlWebpackPlugin.options.title %></title>-->
+    <title>Spectrum-UI-Vue :: Demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="keywords" content="adobe, ui, spectrum, spectrum-css, ui-kit, vue, vuejs, components">
+    <meta name="author" content="Maxim Dolgov (plugn)">
+    <meta name="description" content="Spectrum CSS UI Kit for VueJS">
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/flexbox.css" />
+    <link rel="stylesheet" href="/spectrum-css/spectrum-core.css">
+    <link rel="stylesheet" href="/spectrum-css/standalone/spectrum-dark.css">
+    <script src="/spectrum-css/loadicons.js"></script>
+    <script>
+      loadIcons('/spectrum-css/spectrum-css-icons.svg');
+      loadIcons('/spectrum-css/spectrum-icons.svg');
+    </script>
   </head>
-  <body>
+  <body class="vbox" style="height: 100%; width: 100%;">
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
