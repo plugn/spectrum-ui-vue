@@ -1,5 +1,7 @@
 <template>
-  <div class="spectrum-Dropdown is-open">
+  <div class="spectrum-Dropdown is-open"
+    v-click-outside="onClickOutside"
+  >
     <button class="spectrum-FieldButton spectrum-Dropdown-trigger" aria-haspopup="listbox"
       :class="{
         'is-selected': isOpen,
@@ -34,11 +36,15 @@
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
 import DropdownIcon from './DropdownIcon.vue'
 import LoopMixin from '../mixins/LoopMixin.js'
 
 export default {
   name: 'Dropdown',
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   mixins: [
     LoopMixin,
   ],
@@ -92,6 +98,12 @@ export default {
       // this.isOpen = false
       console.log('onItemToggle', this.isOpen, this.innerSelectedIndexes)
 
+    },
+    onClickOutside() {
+      // console.log(' * onClickOutside : ', this.isOpen)
+      if (this.isOpen) {
+        this.isOpen = false
+      }
     },
   },
   mounted() {
