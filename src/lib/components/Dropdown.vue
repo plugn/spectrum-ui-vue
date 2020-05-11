@@ -16,7 +16,7 @@
       :class="{
         'is-open': isOpen,
       }"
-      style="width: 100%"
+      style="width:100%; z-index:100;"
     >
       <ul class="spectrum-Menu" role="listbox">
         <li class="spectrum-Menu-item" role="option" aria-selected="true" tabindex="0"

@@ -1,9 +1,8 @@
 <template>
   <div class="ui-page flex vbox main-start cross-start">
-    <div class="hbox" style="padding: 5px; height: 300px;">
+    <div class="hbox" style="padding: 5px; height: 100px;">
       <Dropdown label="Choose target"
                 :items="tabs0"
-                style="width: 380px;"
       />
     </div>
     <div class="hbox" style="padding: 5px;">
