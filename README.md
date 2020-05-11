@@ -1,3 +1,9 @@
+###### Spectrum-UI-Vue
+
+UI Components Library for VueJS applications 
+
+[Spectrum-CSS](https://opensource.adobe.com/spectrum-css/)
+
 # spectrum-ui-vue
 
 ## Project setup

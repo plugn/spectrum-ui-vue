@@ -6,14 +6,15 @@
   "scripts": {
     "build": "npm run build-lib && npm run build-docs",
     "build-lib": "vue-cli-service build --target lib --name ../lib/SpectrumUIVue src/lib/index.js",
-    "docs-app": "vue-cli-service build --target app",
-    "docs-static": "node docs-static.js",
-    "docs": "npm run docs-app && npm run docs-static",
-    "docs-serve": "serve dist -l tcp://0.0.0.0:7890",
-    "prepare": "npm run build && npm run docs",
-    "build-watch": "vue-cli-service build --no-clean --watch --mode production --target lib --name ratio src/UI-Plugin.js",
+    "build-docs": "vue-cli-service build --target app",
+    "docs-public": "node docs-public.js",
+    "prepare": "npm-run-all --parallel docs-public build",
+    "serve": "serve dist -l tcp://0.0.0.0:7890",
     "dev": "PORT=7878 vue-cli-service serve"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/plugn/spectrum-ui-vue.git"

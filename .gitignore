@@ -2,6 +2,7 @@
 node_modules
 /dist
 /lib
+/public/spectrum-css
 
 # local env files
 .env.local
