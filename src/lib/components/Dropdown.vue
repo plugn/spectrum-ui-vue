@@ -9,7 +9,7 @@
       }"
       @click="isOpen = !isOpen"
     >
-      <span class="spectrum-Dropdown-label" v-text="label"/>
+      <span class="spectrum-Dropdown-label">{{ selectedLabel }}</span>
       <DropdownIcon class="spectrum-Dropdown-icon" name="ChevronDownMedium" />
     </button>
     <div class="spectrum-Popover spectrum-Popover--bottom spectrum-Dropdown-popover"
@@ -39,6 +39,7 @@
 import vClickOutside from 'v-click-outside'
 import DropdownIcon from './DropdownIcon.vue'
 import LoopMixin from '../mixins/LoopMixin.js'
+import { getNested } from '../utils'
 
 export default {
   name: 'Dropdown',
@@ -82,10 +83,25 @@ export default {
       innerSelectedIndexes: [],
     }
   },
+  computed: {
+    selectedLabel() {
+      let result = this.label
+      if (this.innerSelectedIndexes.length) {
+        const exceeded = this.innerSelectedIndexes.length - 1
+        result = getNested(this.items[this.innerSelectedIndexes[0]], 'label')
+        result += exceeded ? ` (+${exceeded})` : ''
+      }
+      return result
+    }
+  },
   methods: {
     updateSelectedIndexes(toggledIndex) {
-      // console.log(' * this.innerSelectedIndexes : ', this.innerSelectedIndexes)
       const needlePos = this.innerSelectedIndexes.indexOf(toggledIndex)
+      if (!this.multiple) {
+        this.innerSelectedIndexes = ~needlePos ? [] : [toggledIndex]
+        return
+      }
+
       if (~needlePos) {
         this.innerSelectedIndexes.splice(needlePos, 1)
       } else {
@@ -95,7 +111,9 @@ export default {
     onItemToggle(toggledIndex) {
       this.updateSelectedIndexes(toggledIndex)
       this.$emit('update:selectedIndexes', this.innerSelectedIndexes)
-      // this.isOpen = false
+      if (!this.multiple) {
+        this.isOpen = false
+      }
       console.log('onItemToggle', this.isOpen, this.innerSelectedIndexes)
 
     },
