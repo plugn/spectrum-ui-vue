@@ -1,5 +1,12 @@
 <template>
   <div class="ui-page flex vbox main-start cross-start">
+    <div class="hbox" style="padding: 5px; height: 200px;">
+      <SideNav :items="menuItems"
+        no-icon
+        :selected-index.sync="sideNavIndex"
+        @update:selectedIndex="onNavClick"
+      />
+    </div>
     <div class="hbox" style="padding: 5px; height: 100px;">
       <Dropdown label="Choose target"
         multiple
@@ -99,11 +106,13 @@
     QuickActions,
     Tabs,
     Tool,
+    SideNav,
   } = SpectrumUIVue
 
   import spectrumIcons from '../spectrum-icons-list.json'
 
 
+  const getIconName = index => spectrumIcons[index].match(/\w+$/)[0]
   const createIconTabs = (start, end, selected = 0) => spectrumIcons.slice(start, end)
   .map(v => v.match(/\w+$/)[0])
   .map((v, i) => ({
@@ -121,9 +130,11 @@
       Tool,
       Tabs,
       Dropdown,
+      SideNav,
     },
     data() {
       return {
+        sideNavIndex: 1,
         tabSelectedIndex: 0,
         tabSelectedIndex1: 0,
         tabSelectedIndex2: 0,
@@ -131,6 +142,13 @@
           'Visit',
           'Watch',
           'Wrench',
+        ],
+        menuItems: [
+          {label: 'Digest', iconName: 'Star'},
+          {label: 'Catalog', iconName: 'Blur'},
+          {label: 'Newsfeed', iconName: 'Beaker'},
+          {label: 'Gallery', iconName: getIconName(500)},
+          {label: 'Feedback', iconName: getIconName(505)},
         ],
         tabs0: [{label: 'Tab 0', selected: true}, {label: 'Tab 1'}, {label: 'Tab 2'}],
         tabs1: createIconTabs(1600, 1603, 1),
@@ -140,6 +158,9 @@
     methods: {
       onSelectIndex(what) {
         console.log('onSelectIndex()', what)
+      },
+      onNavClick(index, target) {
+        console.log(' * onNavClick : ', index, target)
       }
     },
     mounted() {
