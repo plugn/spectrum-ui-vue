@@ -114,8 +114,7 @@ export default {
       if (!this.multiple) {
         this.isOpen = false
       }
-      console.log('onItemToggle', this.isOpen, this.innerSelectedIndexes)
-
+      // console.log('onItemToggle', this.isOpen, this.innerSelectedIndexes)
     },
     onClickOutside() {
       // console.log(' * onClickOutside : ', this.isOpen)

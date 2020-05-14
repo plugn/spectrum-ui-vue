@@ -1,10 +1,11 @@
 <template>
   <div class="ui-page flex vbox main-start cross-start">
-    <div class="hbox" style="padding: 5px; height: 200px;">
-      <SideNav :items="menuItems"
-        no-icon
-        :selected-index.sync="sideNavIndex"
-        @update:selectedIndex="onNavClick"
+    <div class="hbox" style="padding: 5px; height: 300px;">
+      <SideNav
+        multilevel
+        :items="menuTree"
+        :selected-item.sync="sideNavIndex"
+        @update:selectedItem="onNavClick"
       />
     </div>
     <div class="hbox" style="padding: 5px; height: 100px;">
@@ -15,35 +16,38 @@
     </div>
     <div class="hbox" style="padding: 5px;">
       <Tabs compact
-            :items="tabs0"
-            :selected-index="tabSelectedIndex"
-            @update:selectedIndex="onSelectIndex"
+        :items="tabs0"
+        :selected-index="tabSelectedIndex"
+        @update:selectedIndex="onSelectIndex"
       />
     </div>
     <div class="hbox" style="padding: 5px;">
-      <Tabs :items="tabs1" />
+      <Tabs :items="tabs1"/>
     </div>
     <div class="hbox" style="padding: 5px;">
-      <Tabs direction="vert" :items="tabItems" no-text />
+      <Tabs direction="vert" :items="tabItems" no-text/>
     </div>
 
     <div class="hbox">
-      <Tool icon-name="Camera" icon-size="large" />
-      <Tool icon-name="Camera" icon-size="Medium"  />
-      <Tool icon-name="Camera" icon-size="S" />
+      <Tool icon-name="Camera" icon-size="large"/>
+      <Tool icon-name="Camera" icon-size="Medium"/>
+      <Tool icon-name="Camera" icon-size="S"/>
       <button aria-label="label" class="spectrum-Tool">
-        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img" class="spectrum-Icon spectrum-Icon--sizeS">
-          <use xlink:href="#spectrum-icon-18-123" />
+        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img"
+             class="spectrum-Icon spectrum-Icon--sizeS">
+          <use xlink:href="#spectrum-icon-18-123"/>
         </svg>
       </button>
 
       <button aria-label="Show" class="spectrum-Tool">
-        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img" class="spectrum-Icon spectrum-Icon--sizeS">
-          <use xlink:href="#spectrum-icon-18-ABC" />
+        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img"
+             class="spectrum-Icon spectrum-Icon--sizeS">
+          <use xlink:href="#spectrum-icon-18-ABC"/>
         </svg>
       </button>
       <button aria-label="Show" class="spectrum-Tool">
-        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img" class="spectrum-Icon spectrum-Icon--sizeS">
+        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img"
+             class="spectrum-Icon spectrum-Icon--sizeS">
           <rect height="4" rx="1" ry="1" width="28" x="4" y="16"></rect>
           <rect height="4" rx="1" ry="1" width="28" x="4" y="6"></rect>
           <rect height="4" rx="1" ry="1" width="28" x="4" y="26"></rect>
@@ -51,14 +55,14 @@
       </button>
       <button class="spectrum-Tool">
         <svg class="spectrum-Icon spectrum-Icon--sizeS" focusable="false" aria-hidden="true" aria-label="Brush">
-          <use xlink:href="#spectrum-icon-18-Brush" />
+          <use xlink:href="#spectrum-icon-18-Brush"/>
         </svg>
       </button>
     </div>
     <div class="hbox">
-      <ActionButton label="Edit" />
-      <ActionButton label="Edit" is-selected />
-      <ActionButton label="Edit" disabled />
+      <ActionButton label="Edit"/>
+      <ActionButton label="Edit" is-selected/>
+      <ActionButton label="Edit" disabled/>
     </div>
 
     <div class="hbox">
@@ -71,20 +75,21 @@
           <ActionButton>
             <Icon name="copy"/>
           </ActionButton>
-          <ActionButton disabled quiet label="ds qt" />
+          <ActionButton disabled quiet label="ds qt"/>
           <ActionButton is-selected quiet label="sel qt">
             <Icon name="copy"/>
           </ActionButton>
           <ActionButton is-selected label="sel">
-            <Icon name="delete" />
+            <Icon name="delete"/>
           </ActionButton>
         </div>
       </div>
 
     </div>
+
     <div class="hbox">
       <QuickActions text-only is-open class="zxc" style="padding: 20px;">
-        <ActionButton label="Edit" />
+        <ActionButton label="Edit"/>
         <ActionButton label="Edit" quiet/>
         <ActionButton label="Copy" quiet/>
         <ActionButton label="Delete" quiet/>
@@ -97,6 +102,8 @@
 
 <script>
   import SpectrumUIVue from '../lib/index'
+  import spectrumIcons from '../spectrum-icons-list.json'
+  // import menu3Level from '../tree'
 
   const {
     ActionButton,
@@ -109,7 +116,6 @@
     SideNav,
   } = SpectrumUIVue
 
-  import spectrumIcons from '../spectrum-icons-list.json'
 
 
   const getIconName = index => spectrumIcons[index].match(/\w+$/)[0]
@@ -118,7 +124,7 @@
   .map((v, i) => ({
     label: v,
     iconName: v,
-    selected: i === selected,
+    selected: i===selected,
   }))
 
   export default {
@@ -134,7 +140,7 @@
     },
     data() {
       return {
-        sideNavIndex: 1,
+        sideNavIndex: '0',
         tabSelectedIndex: 0,
         tabSelectedIndex1: 0,
         tabSelectedIndex2: 0,
@@ -150,6 +156,21 @@
           {label: 'Gallery', iconName: getIconName(500)},
           {label: 'Feedback', iconName: getIconName(505)},
         ],
+        // menu3Level,
+        menuTree: [
+          {label: 'Digest', iconName: 'Star'},
+          {label: 'Catalog', iconName: 'Blur', disabled: true},
+          {
+            label: 'Zoo', iconName: getIconName(1000),
+            $children: [
+              {label: 'frogs', iconName: getIconName(1500)},
+              {label: 'ducks', iconName: getIconName(1505)},
+              {label: 'rabbits', iconName: getIconName(1550)},
+            ]
+          },
+          {label: 'Gallery', iconName: getIconName(1500)},
+          {label: 'Feedback', iconName: getIconName(1505)},
+        ],
         tabs0: [{label: 'Tab 0', selected: true}, {label: 'Tab 1'}, {label: 'Tab 2'}],
         tabs1: createIconTabs(1600, 1603, 1),
         tabItems: createIconTabs(1575, 1580, 2)
@@ -159,8 +180,8 @@
       onSelectIndex(what) {
         console.log('onSelectIndex()', what)
       },
-      onNavClick(index, target) {
-        console.log(' * onNavClick : ', index, target)
+      onNavClick(index) {
+        console.log(' * onNavClick : ', index)
       }
     },
     mounted() {

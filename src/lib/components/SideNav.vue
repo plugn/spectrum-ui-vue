@@ -1,14 +1,18 @@
 <template>
-  <nav>
-    <ul class="spectrum-SideNav">
+<!--  <nav> -->
+    <ul class="spectrum-SideNav"
+      :class="{
+        'spectrum-SideNav--multiLevel': multilevel,
+      }"
+    >
       <li class="spectrum-SideNav-item"
         :class="{
-          'is-selected': selectedIndex === index,
+          'is-selected': getGlobalIndex(index) === selectedItem,
           'is-disabled': getItemValue(item, 'disabled'),
         }"
         v-for="(item, index) in vForable(items)"
         :key="item._key"
-        @click="onItemSelect($event, index)"
+        @click.stop="onItemSelect(index)"
       >
         <NavLink class="spectrum-SideNav-itemLink"
           :label="noText ? '' : getItemValue(item, 'label')"
@@ -17,9 +21,19 @@
         >
           <Icon v-if="!noIcon && item._value.iconName" class="spectrum-SideNav-itemIcon" :name="item._value.iconName" :size="size" />
         </NavLink>
+        <SideNav
+          v-if="getItemValue(item, '$children.length')"
+          :index-prefix = "getGlobalIndex(index)"
+          :items="getItemValue(item, '$children')"
+          :selected-item="selectedItem"
+          @update:selectedItem="onUpdateSelectedItem"
+          :no-text="noText"
+          :no-icon="noIcon"
+          :size="size"
+        />
       </li>
     </ul>
-  </nav>
+<!--  </nav>-->
 </template>
 <script>
 import NavLink from './NavLink'
@@ -47,31 +61,35 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    selectedIndex: {
-      type: Number,
-      default: 0,
+    indexPrefix: {
+      type: String,
+      default: ''
+    },
+    selectedItem: {
+      type: String,
+      default: '0',
     },
     size: {
       type: String,
       default: 'S'
     },
+    multilevel: Boolean,
     quiet: Boolean,
     compact: Boolean,
     noText: Boolean,
     noIcon: Boolean,
   },
-  data() {
-    return {
-      innerSelectedIndex: 0,
-    }
-  },
   methods: {
-    onItemSelect({currentTarget}, index) {
-      this.$emit('update:selectedIndex', index, currentTarget.textContent)
+    getGlobalIndex(index) {
+      return this.indexPrefix ? [this.indexPrefix, index].join(':') : String(index)
+    },
+    onUpdateSelectedItem(selectedIndex) {
+      this.$emit('update:selectedItem', selectedIndex)
+    },
+    onItemSelect(index) {
+      if (this.items[index].disabled) { return }
+      this.onUpdateSelectedItem(this.getGlobalIndex(index))
     },
   },
-  mounted() {
-    this.innerSelectedIndexes = this.selectedIndexes
-  }
 }
 </script>
