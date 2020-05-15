@@ -8,23 +8,23 @@
       <li class="spectrum-SideNav-item"
         :class="{
           'is-selected': getGlobalIndex(index) === selectedItem,
-          'is-disabled': getItemValue(item, 'disabled'),
+          'is-disabled': getNested(item, 'disabled'),
         }"
-        v-for="(item, index) in vForable(items)"
-        :key="item._key"
+        v-for="({item, key}, index) in vForable(items)"
+        :key="key"
         @click.stop="onItemSelect(index)"
       >
         <NavLink class="spectrum-SideNav-itemLink"
-          :label="noText ? '' : getItemValue(item, 'label')"
-          :title="getItemValue(item, 'label', '')"
-          :to="getItemValue(item, 'to')"
+          :label="noText ? '' : getNested(item, 'label')"
+          :title="getNested(item, 'label', '')"
+          :to="getNested(item, 'to')"
         >
-          <Icon v-if="!noIcon && item._value.iconName" class="spectrum-SideNav-itemIcon" :name="item._value.iconName" :size="size" />
+          <Icon v-if="!noIcon && item.iconName" class="spectrum-SideNav-itemIcon" :name="item.iconName" :size="size" />
         </NavLink>
         <SideNav
-          v-if="getItemValue(item, '$children.length')"
+          v-if="getNested(item, '$children.length')"
           :index-prefix = "getGlobalIndex(index)"
-          :items="getItemValue(item, '$children')"
+          :items="getNested(item, '$children')"
           :selected-item="selectedItem"
           @update:selectedItem="onUpdateSelectedItem"
           :no-text="noText"

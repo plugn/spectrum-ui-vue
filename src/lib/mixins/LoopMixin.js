@@ -4,6 +4,7 @@ export default {
   name: 'LoopMixin',
   methods: {
     vForable,
+    getNested,
     getItemValue(item, path) {
       return getNested(item._value, path)
     },
