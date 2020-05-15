@@ -11,14 +11,14 @@
       :class="{
         'is-selected': innerSelectedIndex === index,
       }"
-      v-for="(item, index) in vForable(items)"
-      :key="item._key"
-      :tabindex="item._key"
+      v-for="({item, key}, index) in vForable(items)"
+      :key="key"
+      :tabindex="key"
       :ref="`tabItem-${index}`"
       @click="onItemSelect($event, index)"
     >
-      <Icon v-if="!noIcon && item._value.iconName" :name="item._value.iconName" :size="size" />
-      <label v-if="!noText && item._value.label" class="spectrum-Tabs-itemLabel" v-text="item._value.label"/>
+      <Icon v-if="!noIcon && item.iconName" :name="item.iconName" :size="size" />
+      <label v-if="!noText && item.label" class="spectrum-Tabs-itemLabel" v-text="item.label"/>
     </div>
     <div v-if="indicatorStyle" class="spectrum-Tabs-selectionIndicator" :style="indicatorStyle">
     </div>

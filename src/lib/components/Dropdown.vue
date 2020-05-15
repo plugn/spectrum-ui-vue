@@ -20,14 +20,14 @@
     >
       <ul class="spectrum-Menu" role="listbox">
         <li class="spectrum-Menu-item" role="option" aria-selected="true" tabindex="0"
-          v-for="(item, index) in vForable(items)"
-          :key="item._key"
+          v-for="({item, key}, index) in vForable(items)"
+          :key="key"
           :class="{
             'is-selected': ~innerSelectedIndexes.indexOf(index),
           }"
           @click="onItemToggle(index)"
         >
-          <span class="spectrum-Menu-itemLabel" v-text="getItemValue(item, 'label')" />
+          <span class="spectrum-Menu-itemLabel" v-text="item.label" />
           <DropdownIcon class="spectrum-Menu-checkmark spectrum-Menu-itemIcon" name="CheckmarkMedium" />
         </li>
       </ul>

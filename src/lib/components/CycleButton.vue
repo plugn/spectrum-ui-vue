@@ -4,12 +4,12 @@
     @click.native="incrementIndex"
   >
     <Icon class="spectrum-CycleButton-item"
-      v-for="(item, index) in vForable(items)"
-      :key="item._key"
+      v-for="({key, item}, index) in vForable(items)"
+      :key="key"
       :class="{
         'is-selected': selectedIndex === index,
       }"
-      :name="item._value.iconName"
+      :name="item.iconName"
       :size="size"
     />
   </ActionButton>
