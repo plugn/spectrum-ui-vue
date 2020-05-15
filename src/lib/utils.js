@@ -1,5 +1,11 @@
-export const vForable = list => list.map((_value, _key) => ({ _value, _key, item: _value, key: _key }))
-
+/**
+ * gets value of nested property
+ *
+ * @param obj {object|array}
+ * @param path {string}
+ * @param def - default value
+ * @returns {*}
+ */
 export function getNested(obj, path, def){
   let key, val = obj
   let arr = String(path)
