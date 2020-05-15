@@ -1,5 +1,5 @@
 <template>
-  <button aria-label="label" class="spectrum-Tool">
+  <button :aria-label="label" class="spectrum-Tool">
     <Icon :name="iconName" :size="iconSize" />
   </button>
 </template>

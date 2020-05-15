@@ -1,101 +1,114 @@
 <template>
-  <div class="ui-page flex vbox main-start cross-start">
-    <div class="hbox" style="padding: 5px; height: 300px;">
+  <div class="ui-page flex hbox main-start cross-start">
+    <div class="vbox">
       <SideNav
         multilevel
         :items="menuTree"
         :selected-item.sync="sideNavIndex"
         @update:selectedItem="onNavClick"
+        style="min-width: 160px;"
       />
     </div>
-    <div class="hbox" style="padding: 5px; height: 100px;">
-      <Dropdown label="Choose target"
-        multiple
-        :items="tabs0"
-      />
-    </div>
-    <div class="hbox" style="padding: 5px;">
-      <Tabs compact
-        :items="tabs0"
-        :selected-index="tabSelectedIndex"
-        @update:selectedIndex="onSelectIndex"
-      />
-    </div>
-    <div class="hbox" style="padding: 5px;">
-      <Tabs :items="tabs1"/>
-    </div>
-    <div class="hbox" style="padding: 5px;">
-      <Tabs direction="vert" :items="tabItems" no-text/>
-    </div>
+    <div class="vbox" style="padding: 5px; height: 300px;">
+      <div class="hbox" style="padding: 5px; height: 100px;">
+        <Dropdown label="Choose target"
+          multiple
+          :items="tabs0"
+        />
+      </div>
+      <div class="hbox" style="padding: 5px;">
+        <Tabs compact
+          :items="tabs0"
+          :selected-index="tabSelectedIndex"
+          @update:selectedIndex="onSelectIndex"
+        />
+      </div>
+      <div class="hbox" style="padding: 5px;">
+        <Tabs :items="tabs1"/>
+      </div>
+      <div class="hbox" style="padding: 5px;">
+        <Tabs direction="vert" :items="tabItems" no-text/>
+      </div>
 
-    <div class="hbox">
-      <Tool icon-name="Camera" icon-size="large"/>
-      <Tool icon-name="Camera" icon-size="Medium"/>
-      <Tool icon-name="Camera" icon-size="S"/>
-      <button aria-label="label" class="spectrum-Tool">
-        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img"
-             class="spectrum-Icon spectrum-Icon--sizeS">
-          <use xlink:href="#spectrum-icon-18-123"/>
-        </svg>
-      </button>
+      <div class="hbox">
+        <CycleButton quiet size="M"
+         :selectedIndex.sync="cycleBtnIndex1"
+         :items="[
+            {iconName: 'RewindCircle', label: '<<'},
+            {iconName: 'StepBackwardCircle', label: '<='},
+          ]"
+          @update:selectedIndex="onCycleSelect"
+        />
 
-      <button aria-label="Show" class="spectrum-Tool">
-        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img"
-             class="spectrum-Icon spectrum-Icon--sizeS">
-          <use xlink:href="#spectrum-icon-18-ABC"/>
-        </svg>
-      </button>
-      <button aria-label="Show" class="spectrum-Tool">
-        <svg viewBox="0 0 36 36" focusable="false" aria-hidden="true" role="img"
-             class="spectrum-Icon spectrum-Icon--sizeS">
-          <rect height="4" rx="1" ry="1" width="28" x="4" y="16"></rect>
-          <rect height="4" rx="1" ry="1" width="28" x="4" y="6"></rect>
-          <rect height="4" rx="1" ry="1" width="28" x="4" y="26"></rect>
-        </svg>
-      </button>
-      <button class="spectrum-Tool">
-        <svg class="spectrum-Icon spectrum-Icon--sizeS" focusable="false" aria-hidden="true" aria-label="Brush">
-          <use xlink:href="#spectrum-icon-18-Brush"/>
-        </svg>
-      </button>
-    </div>
-    <div class="hbox">
-      <ActionButton label="Edit"/>
-      <ActionButton label="Edit" is-selected/>
-      <ActionButton label="Edit" disabled/>
-    </div>
+        <CycleButton quiet size="L"
+          :selectedIndex.sync="cycleBtnIndex"
+          :items="[
+            {iconName: 'PlayCircle', label: 'Play'},
+            {iconName: 'PauseCircle', label: 'Pause'},
+          ]"
+          @update:selectedIndex="onCycleSelect"
+        />
+        <CycleButton quiet size="L"
+          :selectedIndex="0"
+          :items="[
+            {iconName: 'StopCircle', label: '[]'},
+          ]"
+          @update:selectedIndex="onCycleSelect"
+        />
+        <CycleButton quiet size="M"
+          :selectedIndex.sync="cycleBtnIndex2"
+          :items="[
+            {iconName: 'FastForwardCircle', label: '>>'},
+            {iconName: 'StepForwardCircle', label: '=>'},
+          ]"
+          @update:selectedIndex="onCycleSelect"
+        />
+      </div>
 
-    <div class="hbox">
-      <div class="spectrum-QuickActions-overlay" style="padding: 20px;">
+      <div class="hbox">
+        <Tool icon-name="Camera" icon-size="Medium"/>
+        <Tool icon-name="Camera" icon-size="S"/>
+        <Tool icon-name="123" icon-size="S"/>
+        <Tool icon-name="ABC" icon-size="S"/>
+        <Tool icon-name="ShowMenu" icon-size="S"/>
+        <Tool icon-name="Brush" icon-size="M"/>
+      </div>
+      <div class="hbox">
+        <ActionButton label="Edit"/>
+        <ActionButton label="Edit" is-selected/>
+        <ActionButton label="Edit" disabled/>
+      </div>
 
-        <div class="spectrum-QuickActions is-open">
-          <ActionButton quiet>
-            <Icon name="edit"/>
-          </ActionButton>
-          <ActionButton>
-            <Icon name="copy"/>
-          </ActionButton>
-          <ActionButton disabled quiet label="ds qt"/>
-          <ActionButton is-selected quiet label="sel qt">
-            <Icon name="copy"/>
-          </ActionButton>
-          <ActionButton is-selected label="sel">
-            <Icon name="delete"/>
-          </ActionButton>
+      <div class="hbox">
+        <div class="spectrum-QuickActions-overlay" style="padding: 20px;">
+
+          <div class="spectrum-QuickActions is-open">
+            <ActionButton quiet>
+              <Icon name="edit"/>
+            </ActionButton>
+            <ActionButton>
+              <Icon name="copy"/>
+            </ActionButton>
+            <ActionButton disabled quiet label="ds qt"/>
+            <ActionButton is-selected quiet label="sel qt">
+              <Icon name="copy"/>
+            </ActionButton>
+            <ActionButton is-selected label="sel">
+              <Icon name="delete"/>
+            </ActionButton>
+          </div>
         </div>
       </div>
 
+      <div class="hbox">
+        <QuickActions text-only is-open class="zxc" style="padding: 20px;">
+          <ActionButton label="Edit"/>
+          <ActionButton label="Edit" quiet/>
+          <ActionButton label="Copy" quiet/>
+          <ActionButton label="Delete" quiet/>
+        </QuickActions>
+      </div>
     </div>
-
-    <div class="hbox">
-      <QuickActions text-only is-open class="zxc" style="padding: 20px;">
-        <ActionButton label="Edit"/>
-        <ActionButton label="Edit" quiet/>
-        <ActionButton label="Copy" quiet/>
-        <ActionButton label="Delete" quiet/>
-      </QuickActions>
-    </div>
-
 
   </div>
 </template>
@@ -104,19 +117,6 @@
   import SpectrumUIVue from '../lib/index'
   import spectrumIcons from '../spectrum-icons-list.json'
   // import menu3Level from '../tree'
-
-  const {
-    ActionButton,
-    Dropdown,
-    DropdownIcon,
-    Icon,
-    QuickActions,
-    Tabs,
-    Tool,
-    SideNav,
-  } = SpectrumUIVue
-
-
 
   const getIconName = index => spectrumIcons[index].match(/\w+$/)[0]
   const createIconTabs = (start, end, selected = 0) => spectrumIcons.slice(start, end)
@@ -128,18 +128,15 @@
   }))
 
   export default {
-    name: 'Prefs',
+    name: 'SueDocsApp',
     components: {
-      Icon,
-      ActionButton,
-      QuickActions,
-      Tool,
-      Tabs,
-      Dropdown,
-      SideNav,
+      ...SpectrumUIVue,
     },
     data() {
       return {
+        cycleBtnIndex: 0,
+        cycleBtnIndex1: 0,
+        cycleBtnIndex2: 0,
         sideNavIndex: '0',
         tabSelectedIndex: 0,
         tabSelectedIndex1: 0,
@@ -177,6 +174,9 @@
       }
     },
     methods: {
+      onCycleSelect(index, item) {
+        console.log('onCycleSelect()', index, item)
+      },
       onSelectIndex(what) {
         console.log('onSelectIndex()', what)
       },

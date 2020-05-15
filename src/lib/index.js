@@ -1,4 +1,5 @@
 import ActionButton from './components/ActionButton.vue'
+import CycleButton from './components/CycleButton'
 import Dropdown from './components/Dropdown.vue'
 import DropdownIcon from './components/DropdownIcon.vue'
 import Icon from './components/Icon.vue'
@@ -9,6 +10,7 @@ import SideNav from './components/SideNav'
 
 const SpectrumUIVue = {
   ActionButton,
+  CycleButton,
   Dropdown,
   DropdownIcon,
   Icon,
