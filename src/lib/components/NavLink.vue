@@ -1,5 +1,5 @@
 <template>
-    <router-link v-if="hasRouter" :to="to">
+    <router-link v-if="hasRouter && to" :to="to">
       <slot />
       {{ label }}
     </router-link>
@@ -24,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .spectrum a:visited {
+    color: inherit;
+  }
+</style>
