@@ -7,6 +7,7 @@ import QuickActions from './components/QuickActions.vue'
 import Tabs from './components/Tabs.vue'
 import Tool from './components/Tool.vue'
 import SideNav from './components/SideNav'
+import Toggle from './components/Toggle'
 
 const SpectrumUIVue = {
   ActionButton,
@@ -18,6 +19,7 @@ const SpectrumUIVue = {
   Tabs,
   Tool,
   SideNav,
+  Toggle,
 }
 
 export default SpectrumUIVue

@@ -11,6 +11,12 @@
     </div>
     <div class="vbox" style="padding: 5px; height: 300px;">
       <div class="hbox" style="padding: 5px; height: 100px;">
+        <Toggle label="simple" />
+        <Toggle label="quiet" quiet />
+        <Toggle label="unused" disabled />
+        <Toggle :ab-labels="['in', 'out']" ab quiet />
+      </div>
+      <div class="hbox" style="padding: 5px; height: 100px;">
         <Dropdown label="Choose target"
           multiple
           :items="tabs0"
