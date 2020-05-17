@@ -30,6 +30,12 @@ import "vue-prism-editor/dist/VuePrismEditor.css";
 import Samples from './samples'
 const defaultTemplate = `<div>preview is under construction</div>`
 
+const sampleExtraComponents = {
+  Tool: {
+    Icon: SpectrumUIVue.Icon
+  },
+}
+
 export default {
   name: 'Show',
   components: {
@@ -49,7 +55,9 @@ export default {
   methods: {
     setPreview(component) {
       this.previewCode = Samples[component] || defaultTemplate
-      this.previewComponents = SpectrumUIVue[component] ? {[component]: SpectrumUIVue[component]} : {}
+      const basicComponent = SpectrumUIVue[component] ? {[component]: SpectrumUIVue[component]} : {}
+      const extraComponents = sampleExtraComponents[component] ? sampleExtraComponents[component] : {}
+      this.previewComponents = {...basicComponent, ...extraComponents}
       // console.log(' * setPreview component : ', component, 'previewComponents', this.previewComponents)
     },
     onNavClick(index) {
