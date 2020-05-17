@@ -1,31 +1,34 @@
 export default [
   {
-    label: 'Catalog',
+    label: '',
     iconName: 'Apps',
-    to: '/catalog'
-
+    to: '/'
   },
-  {
-    label: 'Docs',
-    iconName: 'Compass',
-    to: '/',
-    // 'disabled': true,
-  },
+  // {
+  //   label: 'Docs',
+  //   iconName: 'Compass',
+  //   to: '/',
+  //   // 'disabled': true,
+  // },
   {
     label: 'Buttons',
     iconName: 'Button',
     $children: [
       {
         label: 'ActionButton',
+        to: '/view/ActionButton'
       },
       {
         label: 'CycleButton',
+        to: '/view/CycleButton',
       },
       {
         label: 'Tool',
+        to: '/view/Tool',
       },
       {
         label: 'QuickActions',
+        to: '/view/QuickActions',
       },
     ]
   },
@@ -35,30 +38,33 @@ export default [
     $children: [
       {
         label: 'NavLink',
+        to: '/view/NavLink',
       },
       {
         label: 'SideNav',
+        to: '/view/SideNav',
       },
       {
         label: 'Tabs',
+        to: '/view/Tabs',
       }
     ]
   },
   {
     label: 'Dropdown',
-    // iconName: 'Refresh',
+    to: '/view/Dropdown',
   },
   {
     label: 'DropdownIcon',
-    // iconName: 'Refresh',
+    to: '/view/DropdownIcon',
   },
   {
     label: 'Icon',
-    // iconName: 'Refresh',
+    to: '/view/Icon',
   },
   {
     label: 'Toggle',
-    // iconName: 'Refresh',
+    to: '/view/Toggle',
   },
   {
     label: 'Lists',
