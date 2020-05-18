@@ -7,7 +7,7 @@
     >
       <li class="spectrum-SideNav-item"
         :class="{
-          'is-selected': getGlobalIndex(index) === selectedItem,
+          'is-selected': isCurrent(item, index),
           'is-disabled': getNested(item, 'disabled'),
         }"
         v-for="({item, key}, index) in vForable(items)"
@@ -80,6 +80,13 @@ export default {
     noIcon: Boolean,
   },
   methods: {
+    isCurrent(item, index) {
+      return (
+        this.$router
+          ? item && item.to && this.$route && this.$route.path === item.to
+          : this.getGlobalIndex(index) === this.selectedItem
+      )
+    },
     getGlobalIndex(index) {
       return this.indexPrefix ? [this.indexPrefix, index].join(':') : String(index)
     },

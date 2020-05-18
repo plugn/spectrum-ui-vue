@@ -63,7 +63,7 @@ export default {
       console.log('onSelectIndex()', what)
     },
     onNavClick(index) {
-      console.log(' * onNavClick : ', index)
+      // console.log(' * Docs.onNavClick() : ', index)
     },
   },
   mounted() {

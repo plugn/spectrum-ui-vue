@@ -82,7 +82,7 @@ export default {
       // console.log(' * setPreview component : ', component, 'previewComponents', this.previewComponents)
     },
     onNavClick(index) {
-      // console.log(' * onNavClick : ', index)
+      // console.log(' * Show.onNavClick() : ', index)
     },
     updateCode(code) {
       this.previewCode = code;
