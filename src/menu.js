@@ -8,7 +8,6 @@ export default [
   //   label: 'Docs',
   //   iconName: 'Compass',
   //   to: '/',
-  //   // 'disabled': true,
   // },
   {
     label: 'Buttons',
@@ -36,10 +35,10 @@ export default [
     label: 'Navigation',
     iconName: 'BreadcrumbNavigation',
     $children: [
-      {
-        label: 'NavLink',
-        to: '/view/NavLink',
-      },
+      // {
+      //   label: 'NavLink',
+      //   to: '/view/NavLink',
+      // },
       {
         label: 'SideNav',
         to: '/view/SideNav',
@@ -54,10 +53,10 @@ export default [
     label: 'Dropdown',
     to: '/view/Dropdown',
   },
-  {
-    label: 'DropdownIcon',
-    to: '/view/DropdownIcon',
-  },
+  // {
+  //   label: 'DropdownIcon',
+  //   to: '/view/DropdownIcon',
+  // },
   {
     label: 'Icon',
     to: '/view/Icon',

@@ -9,9 +9,13 @@
         style="min-width: 160px;"
       />
     </div>
-    <div class="vbox flex main-start cross-start" style="padding: 5px;">
+    <div class="vbox flex main-start cross-start" style="padding: 20px;">
       <div class="preview-separate">
-        <VueLivePreview :code="previewCode" :components="previewComponents"/>
+        <VueLivePreview
+          :code="previewCode"
+          :components="previewComponents"
+          @error="previewError"
+        />
       </div>
       <hr style="width: 100%;" />
       <p>Edit the code here</p>
@@ -30,9 +34,26 @@ import "vue-prism-editor/dist/VuePrismEditor.css";
 import Samples from './samples'
 const defaultTemplate = `<div>preview is under construction</div>`
 
+const {
+  ActionButton,
+  CycleButton,
+  Dropdown,
+  DropdownIcon,
+  Icon,
+  QuickActions,
+  Tabs,
+  Tool,
+  SideNav,
+  Toggle,
+} = SpectrumUIVue
+
 const sampleExtraComponents = {
-  Tool: {
-    Icon: SpectrumUIVue.Icon
+  // Tool: {
+  //   Icon,
+  // },
+  QuickActions: {
+    ActionButton,
+    Icon,
   },
 }
 
@@ -61,10 +82,13 @@ export default {
       // console.log(' * setPreview component : ', component, 'previewComponents', this.previewComponents)
     },
     onNavClick(index) {
-      console.log(' * onNavClick : ', index)
+      // console.log(' * onNavClick : ', index)
     },
     updateCode(code) {
       this.previewCode = code;
+    },
+    previewError(error) {
+      console.warn(' (!) previewError', error)
     },
   },
   watch: {

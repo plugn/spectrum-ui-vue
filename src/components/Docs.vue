@@ -9,17 +9,8 @@
         style="min-width: 160px;"
       />
     </div>
-    <div class="vbox" style="padding: 5px; height: 300px;">
-      <div class="hbox" style="padding: 5px;">
-        <Tabs compact
-          :items="tabs0"
-          :selected-index="tabSelectedIndex"
-          @update:selectedIndex="onSelectIndex"
-        />
-      </div>
-      <div class="hbox" style="padding: 5px;">
-        <Tabs :items="tabs1"/>
-      </div>
+    <div class="vbox flex main-center cross-center" style="padding: 20px;">
+      Choose a component from a SideBar
     </div>
 
   </div>

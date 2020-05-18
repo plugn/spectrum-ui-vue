@@ -13,13 +13,13 @@ export default new Router({
       path: '/view/:component',
       component: Show,
     },
-    {
-      path: '/',
-      component: Catalog,
-    },
     // {
     //   path: '/',
-    //   component: Docs,
+    //   component: Catalog,
     // },
+    {
+      path: '/',
+      component: Docs,
+    },
   ]
 })
