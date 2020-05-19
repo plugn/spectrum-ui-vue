@@ -5,9 +5,9 @@ export default [
     to: '/'
   },
   // {
-  //   label: 'Docs',
+  //   label: 'Catalog',
   //   iconName: 'Compass',
-  //   to: '/',
+  //   to: '/cat',
   // },
   {
     label: 'Buttons',

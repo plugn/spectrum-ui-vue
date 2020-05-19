@@ -1,7 +1,13 @@
 <template>
   <div class="hbox" style="padding: 5px;">
-    <Dropdown label="Choose target"
+    <Dropdown label="Choose some colors"
       multiple
+      :items="items"
+      :selected-indexes="[1,5]"
+    />
+
+    <Dropdown style="margin-left:10px"
+      label="Choose one color"
       :items="items"
     />
   </div>
@@ -13,7 +19,7 @@
     data() {
       return {
         items : [
-          {label: 'white', selected: true},
+          {label: 'white'},
           {label: 'red'},
           {label: 'orange'},
           {label: 'yellow'},

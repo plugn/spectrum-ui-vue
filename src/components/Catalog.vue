@@ -20,6 +20,7 @@
         <Dropdown label="Choose target"
           multiple
           :items="tabs0"
+          :selected-indexes="[1]"
         />
       </div>
       <div class="hbox" style="padding: 5px;">

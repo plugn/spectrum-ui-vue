@@ -9,7 +9,7 @@
         style="min-width: 160px;"
       />
     </div>
-    <div class="vbox flex main-center cross-center" style="padding: 20px;">
+    <div class="vbox flex stretch main-center cross-center" style="padding: 20px;">
       Choose a component from a SideBar
     </div>
 

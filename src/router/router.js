@@ -13,10 +13,10 @@ export default new Router({
       path: '/view/:component',
       component: Show,
     },
-    // {
-    //   path: '/',
-    //   component: Catalog,
-    // },
+    {
+      path: '/cat',
+      component: Catalog,
+    },
     {
       path: '/',
       component: Docs,
