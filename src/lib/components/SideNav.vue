@@ -14,7 +14,11 @@
         :key="key"
         @click.stop="onItemSelect(index)"
       >
-        <NavLink class="spectrum-SideNav-itemLink"
+        <h2 v-if="heading && getNested(item, '$children.length')"
+          class="spectrum-SideNav-heading"
+          v-text="getNested(item, 'label')"
+        ></h2>
+        <NavLink v-else class="spectrum-SideNav-itemLink"
           :label="noText ? '' : getNested(item, 'label')"
           :title="getNested(item, 'label', '')"
           :to="getNested(item, 'to')"
@@ -69,6 +73,10 @@ export default {
       type: String,
       default: '0',
     },
+    heading: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: String,
       default: 'S'
@@ -78,6 +86,11 @@ export default {
     compact: Boolean,
     noText: Boolean,
     noIcon: Boolean,
+  },
+  data() {
+    return {
+      elInputId: 'sue_sidenav-id_' + this._uid,
+    }
   },
   methods: {
     isCurrent(item, index) {

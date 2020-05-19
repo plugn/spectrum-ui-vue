@@ -1,11 +1,20 @@
 <template>
-  <SideNav
-    multilevel
-    :items="menuTree"
-    :selected-item.sync="sideNavIndex"
-    @update:selectedItem="onSideNavSampleClick"
-    style="min-width: 160px;"
-  />
+  <div class="hbox" style="padding: 5px">
+    <SideNav style="min-width: 160px;"
+      multilevel
+      :items="menuTree"
+      :selected-item.sync="sideNavIndex"
+      @update:selectedItem="onSideNavSampleClick"
+    />
+
+    <SideNav style="min-width: 160px;"
+      heading
+      multilevel
+      :items="menuTree"
+      :selected-item.sync="sideNavIndex"
+      @update:selectedItem="onSideNavSampleClick"
+    />
+  </div>
 
 </template>
 

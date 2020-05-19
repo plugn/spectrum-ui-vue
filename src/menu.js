@@ -7,8 +7,20 @@ export default [
   // {
   //   label: 'Catalog',
   //   iconName: 'Compass',
-  //   to: '/cat',
+  //   to: '/catalog',
   // },
+  {
+    label: 'Dropdown',
+    to: '/view/Dropdown',
+  },
+  {
+    label: 'Icon',
+    to: '/view/Icon',
+  },
+  {
+    label: 'Toggle',
+    to: '/view/Toggle',
+  },
   {
     label: 'Buttons',
     iconName: 'Button',
@@ -48,22 +60,6 @@ export default [
         to: '/view/Tabs',
       }
     ]
-  },
-  {
-    label: 'Dropdown',
-    to: '/view/Dropdown',
-  },
-  // {
-  //   label: 'DropdownIcon',
-  //   to: '/view/DropdownIcon',
-  // },
-  {
-    label: 'Icon',
-    to: '/view/Icon',
-  },
-  {
-    label: 'Toggle',
-    to: '/view/Toggle',
   },
   {
     label: 'Lists',

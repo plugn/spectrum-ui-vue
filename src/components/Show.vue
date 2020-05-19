@@ -1,12 +1,12 @@
 <template>
   <div class="ui-page flex hbox main-start cross-start">
     <div class="vbox">
-      <SideNav
+      <SideNav style="min-width: 160px;"
         multilevel
+        heading
         :items="menuItems"
         :selected-item.sync="sideNavIndex"
         @update:selectedItem="onNavClick"
-        style="min-width: 160px;"
       />
     </div>
     <div class="vbox flex main-start cross-start" style="padding: 20px;">

@@ -3,6 +3,7 @@
     <div class="vbox">
       <SideNav
         multilevel
+        heading
         :items="menuItems"
         :selected-item.sync="sideNavIndex"
         @update:selectedItem="onNavClick"

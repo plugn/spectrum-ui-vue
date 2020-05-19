@@ -14,7 +14,7 @@ export default new Router({
       component: Show,
     },
     {
-      path: '/cat',
+      path: '/catalog',
       component: Catalog,
     },
     {
