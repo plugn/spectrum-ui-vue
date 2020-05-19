@@ -10,6 +10,7 @@
     <SideNav style="min-width: 160px;"
       heading
       multilevel
+      no-icon
       :items="menuTree"
       :selected-item.sync="sideNavIndex"
       @update:selectedItem="onSideNavSampleClick"
