@@ -1,6 +1,6 @@
 {
   "name": "spectrum-ui-vue",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "private": false,
   "description": "Spectrum CSS UI Kit for VueJS",
   "scripts": {
@@ -15,6 +15,7 @@
   "files": [
     "lib/**/*"
   ],
+  "main": "lib/SpectrumUIVue.common.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/plugn/spectrum-ui-vue.git"

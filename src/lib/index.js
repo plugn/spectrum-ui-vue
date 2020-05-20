@@ -9,7 +9,7 @@ import Tool from './components/Tool.vue'
 import SideNav from './components/SideNav'
 import Toggle from './components/Toggle'
 
-const SpectrumUIVue = {
+const components = {
   ActionButton,
   CycleButton,
   Dropdown,
@@ -22,4 +22,13 @@ const SpectrumUIVue = {
   Toggle,
 }
 
-export default SpectrumUIVue
+const install = function(Vue, opts = {}) {
+  Object.keys(components).forEach(key => {
+    Vue.component(components[key].name, components[key]);
+  })
+}
+
+export default {
+  ...components,
+  install,
+}
