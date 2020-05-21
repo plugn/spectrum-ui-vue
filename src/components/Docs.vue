@@ -10,17 +10,36 @@
         style="min-width: 160px;"
       />
     </div>
-    <div class="vbox flex stretch main-center cross-center" style="padding: 20px;">
-      Choose a component from a SideBar
+    <div class="vbox flex stretch main-center cross-center" style="padding: 0px;">
+      <div class="spectrum-Typography">
+        <p class="spectrum-Body1">
+          Choose a component from a SideBar
+        </p>
+<!--        <component :is="MdContent" />-->
+        <MarkdownView
+          :fm-params="mdSample.attributes"
+          :html="mdSample.html"
+          :transforms="mdTransforms"
+          class="spectrum-Body1"
+        />
+
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
+/*
+  fm.attributes // FrontMatter attributes => { subject: "Hello", tags: ["tag1", "tag2"] }
+  fm.html // Compiled markdown as HTML => "<h1>Title</h1>\n<p>message</p>\n"
+  fm.vue.component // Extendable component object for Vue which renders compiled markdown (Disabled as default)
+*/
 import SpectrumUIVue from '../lib/index'
 import spectrumIcons from '../spectrum-icons-list.json'
 import menuItems from '../menu'
+import MarkdownView from './MarkdownView'
+import mdSample from '@/articles/MdSample.md'
 
 const getIconName = index => spectrumIcons[index].match(/\w+$/)[0]
 const createIconTabs = (start, end, selected = 0) => spectrumIcons.slice(start, end)
@@ -35,9 +54,14 @@ export default {
   name: 'Docs',
   components: {
     ...SpectrumUIVue,
+    MarkdownView,
+    // MdContent: mdSample.vue.component,
   },
   data() {
     return {
+      mdTransforms: [],
+      MdContent: mdSample.vue.component,
+      mdSample,
       menuItems,
       cycleBtnIndex: 0,
       cycleBtnIndex1: 0,
@@ -68,6 +92,8 @@ export default {
     },
   },
   mounted() {
+    console.log(' * mdSample : ',  mdSample)
+
     // console.log(' * spectrumIcons : ', spectrumIcons)
   }
 }
