@@ -18,7 +18,7 @@ export default new Router({
       component: Catalog,
     },
     {
-      path: '/md/:article',
+      path: '/article/:article',
       component: Docs,
     },
     {

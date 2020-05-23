@@ -28,9 +28,6 @@
 import SpectrumUIVue from '../lib/index'
 import { VueLive, VueLivePreview, VueLiveEditor } from 'vue-live'
 import menuItems from '../menu'
-import "prismjs/themes/prism-tomorrow.css";
-import "vue-prism-editor/dist/VuePrismEditor.css";
-
 import Samples from './samples'
 const defaultTemplate = `<div>preview is under construction</div>`
 

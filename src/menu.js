@@ -1,14 +1,12 @@
 export default [
   {
-    label: '',
-    iconName: 'Apps',
-    to: '/md/MdSample'
+    label: 'Getting Started',
+    to: '/article/MdSample'
   },
-  // {
-  //   label: 'Catalog',
-  //   iconName: 'Compass',
-  //   to: '/catalog',
-  // },
+  {
+    label: 'Text Styles',
+    to: '/article/Text'
+  },
   {
     label: 'Dropdown',
     to: '/view/Dropdown',

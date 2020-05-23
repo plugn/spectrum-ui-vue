@@ -16,10 +16,10 @@
           Choose a component from a SideBar
         </p>
 
-<!--        <MdInject />-->
-        <MarkdownView
-          :fm-params="mdSample.attributes"
-          :html="mdSample.html"
+        <MdView
+          v-if="md.article"
+          :fm-params="md.article.attributes"
+          :html="md.article.html"
           class="spectrum-Body3"
         />
 
@@ -32,7 +32,7 @@
 <script>
 import SpectrumUIVue from '../lib/index'
 import menuItems from '../menu'
-import MarkdownView from './MarkdownView'
+import MdView from './MdView'
 import mdSample from '../articles/MdSample.md'
 
 
@@ -40,31 +40,44 @@ export default {
   name: 'Docs',
   components: {
     ...SpectrumUIVue,
-    MarkdownView,
+    MdView,
   },
   data() {
     return {
+      md: {
+        article: null
+      },
       mdSample,
       menuItems,
       sideNavIndex: '0',
-      MdArticle: null,
     }
   },
   methods: {
     onNavClick(index) {
       // console.log(' * Docs.onNavClick() : ', index)
     },
-  },
-  mounted() {
-/*
-    if (this.$route.params.article) {
-      let ArticleInstance = mdInjectFactory(() => import(`../articles/${this.$route.params.article}.md`), this.$route.params.article)
-      console.log('ArticleInstance', ArticleInstance)
-      this.MdArticle = ArticleInstance
-    }
-*/
+    async setArticle(article) {
+      if (!article) { return }
 
-    console.log(' * this.mdSample.attributes : ', this.mdSample.attributes)
-  }
+      let mdArticle = await import(`../articles/${article}.md`)
+      // console.log(' * mdArticle : ', mdArticle)
+      if (mdArticle) {
+        this.md.article = {html: mdArticle.html, attributes: mdArticle.attributes}
+        // console.log(' * md.article : ', this.md.article)
+      }
+    },
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to, from) {
+        this.setArticle(to.params.article)
+      }
+    }
+  },
+  // mounted() {
+  //   this.setArticle(this.$route.params.article)
+  //   // console.log(' * this.mdSample.attributes : ', this.mdSample.attributes)
+  // }
 }
 </script>
