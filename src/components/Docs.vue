@@ -10,17 +10,17 @@
         style="min-width: 160px;"
       />
     </div>
-    <div class="vbox flex stretch main-center cross-center" style="padding: 0px;">
+    <div class="vbox flex stretch main-center cross-center" style="padding: 10px 20px;">
       <div class="spectrum-Typography">
-        <p class="spectrum-Body1">
+        <p class="spectrum-Body2">
           Choose a component from a SideBar
         </p>
-<!--        <component :is="MdContent" />-->
+
+<!--        <MdInject />-->
         <MarkdownView
           :fm-params="mdSample.attributes"
           :html="mdSample.html"
-          :transforms="mdTransforms"
-          class="spectrum-Body1"
+          class="spectrum-Body3"
         />
 
       </div>
@@ -30,71 +30,41 @@
 </template>
 
 <script>
-/*
-  fm.attributes // FrontMatter attributes => { subject: "Hello", tags: ["tag1", "tag2"] }
-  fm.html // Compiled markdown as HTML => "<h1>Title</h1>\n<p>message</p>\n"
-  fm.vue.component // Extendable component object for Vue which renders compiled markdown (Disabled as default)
-*/
 import SpectrumUIVue from '../lib/index'
-import spectrumIcons from '../spectrum-icons-list.json'
 import menuItems from '../menu'
 import MarkdownView from './MarkdownView'
-import mdSample from '@/articles/MdSample.md'
+import mdSample from '../articles/MdSample.md'
 
-const getIconName = index => spectrumIcons[index].match(/\w+$/)[0]
-const createIconTabs = (start, end, selected = 0) => spectrumIcons.slice(start, end)
-.map(v => v.match(/\w+$/)[0])
-.map((v, i) => ({
-  label: v,
-  iconName: v,
-  selected: i===selected,
-}))
 
 export default {
   name: 'Docs',
   components: {
     ...SpectrumUIVue,
     MarkdownView,
-    // MdContent: mdSample.vue.component,
   },
   data() {
     return {
-      mdTransforms: [],
-      MdContent: mdSample.vue.component,
       mdSample,
       menuItems,
-      cycleBtnIndex: 0,
-      cycleBtnIndex1: 0,
-      cycleBtnIndex2: 0,
       sideNavIndex: '0',
-      tabSelectedIndex: 0,
-      tabSelectedIndex1: 0,
-      tabSelectedIndex2: 0,
-      labels: [
-        'Visit',
-        'Watch',
-        'Wrench',
-      ],
-      tabs0: [{label: 'Tab 0', selected: true}, {label: 'Tab 1'}, {label: 'Tab 2'}],
-      tabs1: createIconTabs(1600, 1603, 1),
-      tabItems: createIconTabs(1575, 1580, 2)
+      MdArticle: null,
     }
   },
   methods: {
-    onCycleSelect(index, item) {
-      console.log('onCycleSelect()', index, item)
-    },
-    onSelectIndex(what) {
-      console.log('onSelectIndex()', what)
-    },
     onNavClick(index) {
       // console.log(' * Docs.onNavClick() : ', index)
     },
   },
   mounted() {
-    console.log(' * mdSample : ',  mdSample)
+/*
+    if (this.$route.params.article) {
+      let ArticleInstance = mdInjectFactory(() => import(`../articles/${this.$route.params.article}.md`), this.$route.params.article)
+      console.log('ArticleInstance', ArticleInstance)
+      this.MdArticle = ArticleInstance
+    }
+*/
 
-    // console.log(' * spectrumIcons : ', spectrumIcons)
+    console.log(' * this.mdSample.attributes : ', this.mdSample.attributes)
   }
 }
 </script>

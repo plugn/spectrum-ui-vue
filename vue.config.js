@@ -1,3 +1,5 @@
+const markdownIt = require('markdown-it');
+const markdownItPrism = require('markdown-it-prism');
 const Mode = require('frontmatter-markdown-loader/mode')
 
 module.exports = {
@@ -10,7 +12,8 @@ module.exports = {
     .loader('frontmatter-markdown-loader')
     .tap(options => {
       return {
-        mode: [Mode.VUE_COMPONENT, Mode.HTML, Mode.BODY, Mode.META]
+        mode: [Mode.VUE_COMPONENT, Mode.VUE_RENDER_FUNCTIONS, Mode.HTML, Mode.BODY],
+        // mode: [Mode.VUE_COMPONENT],
       }
     })
   }

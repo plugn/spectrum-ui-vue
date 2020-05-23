@@ -2,7 +2,7 @@ export default [
   {
     label: '',
     iconName: 'Apps',
-    to: '/'
+    to: '/md/MdSample'
   },
   // {
   //   label: 'Catalog',

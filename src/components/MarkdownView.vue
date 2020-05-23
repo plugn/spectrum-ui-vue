@@ -1,25 +1,17 @@
 <template>
-  <div v-html="htmlResult"></div>
+  <runtime-template-compiler :template="template" />
 </template>
 
 <script>
-const chainTransform = (input, transforms = [], params = {}) =>
-  transforms.reduce((acc, fn) => typeof fn === 'function' ? fn(acc, params) : acc, String(input))
-
-const headers = (input, fmParams = {}, classBase = 'spectrum-Heading') => {
-  return input.replace(/<h(\d)>/gmi, `<h$1 class="${classBase}$1">`)
-}
-/*
-const code = (input, fmParams = {}, classBase = 'spectrum-Code') => {
-  return input.replace(/<code/gmi, `<code class="${classBase}${fmParams.level || ''}">`)
-}
-*/
-
-const basicTransforms = [headers]
+import SpectrumUIVue from '../lib/index'
+import domTransform from '../util/domTransforms'
 
 export default {
   name: 'MarkdownView',
   props: {
+    basicComponent: {
+      type: Object,
+    },
     html: {
       type: String,
       default: '',
@@ -33,19 +25,19 @@ export default {
       default: () => ({}),
     },
   },
+
+  components: {
+    ...SpectrumUIVue,
+  },
   data() {
     return {
-      htmlResult: chainTransform(this.html, basicTransforms.concat(this.transforms), this.fmParams)
+      template: domTransform(this.html, this.fmParams)
     }
   },
-  methods: {
-    // htmlResult () {
-    //   chainTransform(this.html, this.transforms, this.fmParams)
-    // }
+  mounted() {
+    console.log(' * this.htmlResult : ', this.template)
+
   }
 }
 </script>
 
-<style scoped>
-
-</style>

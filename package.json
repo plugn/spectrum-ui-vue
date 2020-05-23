@@ -44,8 +44,9 @@
   "devDependencies": {
     "@adobe/spectrum-css-workflow-icons": "^1.0.0",
     "@spectrum-css/spectrum-css": "^3.0.0-alpha.7",
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
+    "@vue/cli-plugin-babel": "4.3.1",
+    "@vue/cli-service": "4.3.1",
+    "@vue/component-compiler-utils": "^3.1.2",
     "frontmatter-markdown-loader": "^3.4.3",
     "loadicons": "^1.0.0",
     "markdown-it": "^11.0.0",
@@ -58,6 +59,7 @@
     "terser-webpack-plugin": "^3.0.1",
     "v-click-outside": "^3.0.1",
     "vue-live": "^1.10.2",
+    "vue-runtime-template-compiler": "^1.2.0",
     "vue-template-compiler": "^2.6.11",
     "webpack-chain": "^6.4.0"
   }

@@ -4,6 +4,10 @@ subject: Markdown-it samples
 tags:
   - markdown
   - samples
+images:
+  style:
+    width: 300px
+    height: 300px
 ---
 
 # h1 Heading 8-)
@@ -18,10 +22,13 @@ tags:
 
 ___
 
+###ActionButton
+
+<action-button label="Start">Run</action-button>   
+
 ---
 
 ***
-
 
 ## Typographic replacements
 
