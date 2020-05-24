@@ -6,7 +6,6 @@
         heading
         :items="menuItems"
         :selected-item.sync="sideNavIndex"
-        @update:selectedItem="onNavClick"
         style="min-width: 160px;"
       />
     </div>
@@ -33,7 +32,7 @@
 import SpectrumUIVue from '../lib/index'
 import menuItems from '../menu'
 import MdView from './MdView'
-import mdSample from '../articles/MdSample.md'
+import { frontMark } from '../util/frontMark'
 
 
 export default {
@@ -47,23 +46,19 @@ export default {
       md: {
         article: null
       },
-      mdSample,
       menuItems,
       sideNavIndex: '0',
     }
   },
   methods: {
-    onNavClick(index) {
-      // console.log(' * Docs.onNavClick() : ', index)
-    },
     async setArticle(article) {
       if (!article) { return }
 
       let mdArticle = await import(`../articles/${article}.md`)
       // console.log(' * mdArticle : ', mdArticle)
+      const fm = frontMark(mdArticle.default)
       if (mdArticle) {
-        this.md.article = {html: mdArticle.html, attributes: mdArticle.attributes}
-        // console.log(' * md.article : ', this.md.article)
+        this.md.article = {html: fm.html, attributes: fm.attributes}
       }
     },
   },
@@ -75,9 +70,5 @@ export default {
       }
     }
   },
-  // mounted() {
-  //   this.setArticle(this.$route.params.article)
-  //   // console.log(' * this.mdSample.attributes : ', this.mdSample.attributes)
-  // }
 }
 </script>

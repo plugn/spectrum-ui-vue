@@ -1,3 +1,15 @@
+import { getNested } from '../lib/utils'
+
+export const applyInlineStyle = (el, style) =>
+  Array.from(Object.entries(style))
+    .forEach(([prop, val]) =>
+      el.style[prop] = val)
+
+/**
+ * DOM Document Transformation Rules
+ * key of Object is CSS Selector,
+ * value is a function that transforms selected element
+ */
 const defaultRules = {
   'code': (el, {codeLevel}) => {
     el.classList.add(`spectrum-Code${codeLevel || 3}`)
@@ -7,7 +19,11 @@ const defaultRules = {
     const level = tag && tag[1] || ''
     level && el.classList.add(`spectrum-Heading${level}`)
   },
-  'img': el => {
+  'img': (el, params) => {
+    const style = getNested(params || {}, 'images.style')
+    if (style) {
+      applyInlineStyle(el, style)
+    }
     el.classList.add('spectrum-Asset-image')
   },
   'hr': el => el.classList.add('spectrum-Rule', 'spectrum-Rule--medium')

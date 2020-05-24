@@ -1,16 +1,15 @@
 ---
-subject: Markdown-it samples
+subject: Markdown-it Samples
 
 tags:
   - markdown
   - samples
 images:
   style:
-    width: 300px
-    height: 300px
+    maxWidth: 400px
 ---
 
-# h1 Heading 8-)
+# h1 Heading
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading

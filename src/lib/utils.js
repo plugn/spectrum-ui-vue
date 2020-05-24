@@ -6,7 +6,7 @@
  * @param def - default value
  * @returns {*}
  */
-export function getNested(obj, path, def){
+export function getNested(obj, path, def = undefined){
   let key, val = obj
   let arr = String(path)
     .replace(/'|"|\]/g,'')

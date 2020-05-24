@@ -1,11 +1,11 @@
 <template>
-  <dynamic v-bind:template="template"></dynamic>
+  <Renderer :template="template"></Renderer>
 </template>
 
 <script>
 import SpectrumUIVue from '../lib/index'
 import domTransform from '../util/domTransforms'
-import dynamic from './Renderer'
+import Renderer from './Renderer'
 
 export default {
   name: 'MdView',
@@ -23,10 +23,14 @@ export default {
       default: () => ({}),
     },
   },
-
   components: {
-    dynamic,
+    Renderer,
     ...SpectrumUIVue,
+  },
+  data() {
+    return {
+      template: '',
+    }
   },
   methods: {
     domTransform,
@@ -38,34 +42,12 @@ export default {
     html: {
       immediate: true, // makes the watcher fire on first render, too.
       handler(value) {
-        // console.log(' * watch html : ', value)
-        if (typeof value !== 'string') {
-          console.log(' (!) watch html : ', value)
-          return
+        if (typeof value === 'string') {
+          this.setTemplate(value)
         }
-        this.setTemplate(value)
       }
     },
-
-    // html (value) {
-    //   console.log(' * )watch html : ', value)
-    //   if (typeof value !== 'string') {
-    //     console.log(' (!) watch html : ', value)
-    //     return
-    //   }
-    //   this.setTemplate(value)
-    // }
   },
-  data() {
-    return {
-      parentComponent: this,
-      template: '',
-    }
-  },
-  // mounted() {
-  //   console.log(' * MarkdownView mounted')
-  //   this.setTemplate()
-  // }
 }
 </script>
 
