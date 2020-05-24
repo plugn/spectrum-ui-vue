@@ -1,13 +1,5 @@
 export default [
   {
-    label: 'Getting Started',
-    to: '/article/MdSample'
-  },
-  {
-    label: 'Text Styles',
-    to: '/article/Text'
-  },
-  {
     label: 'Dropdown',
     to: '/view/Dropdown',
   },
@@ -64,4 +56,13 @@ export default [
     iconName: 'ViewList',
     disabled: true,
   },
+  {
+    label: 'Markdown Features',
+    to: '/article/MdSample'
+  },
+  {
+    label: 'Markdown Styles',
+    to: '/article/Text'
+  },
+
 ]
