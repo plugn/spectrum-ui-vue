@@ -9,8 +9,7 @@ import deflist from 'markdown-it-deflist'
 import footnotes from 'markdown-it-footnote'
 import mark from 'markdown-it-mark'
 import container from 'markdown-it-container'
-
-
+import abbr from 'markdown-it-abbr'
 
 import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-css'
@@ -31,10 +30,11 @@ function renderMD(src = '') {
     typographer: true,
   })
   md.use(prism)
+    .use(abbr)
+    .use(deflist)
     .use(sub)
     .use(sup)
     .use(ins)
-    .use(deflist)
     .use(footnotes)
     .use(mark)
     .use(emoji)
