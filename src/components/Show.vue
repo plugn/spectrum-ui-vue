@@ -1,14 +1,4 @@
 <template>
-  <div class="ui-page flex hbox main-start cross-start">
-    <div class="vbox">
-      <SideNav style="min-width: 160px;"
-        multilevel
-        heading
-        :items="menuItems"
-        :selected-item.sync="sideNavIndex"
-        @update:selectedItem="onNavClick"
-      />
-    </div>
     <div class="vbox flex main-start cross-start" style="padding: 20px;">
       <div class="preview-separate">
         <VueLivePreview
@@ -21,13 +11,11 @@
       <p>Edit the code here</p>
       <VueLiveEditor :code="previewCode" @change="updateCode" />
     </div>
-  </div>
 </template>
 
 <script>
 import SpectrumUIVue from '../lib/index'
 import { VueLive, VueLivePreview, VueLiveEditor } from 'vue-live'
-import menuItems from '../menu'
 import Samples from './samples'
 const defaultTemplate = `<div>preview is under construction</div>`
 
@@ -57,17 +45,14 @@ const sampleExtraComponents = {
 export default {
   name: 'Show',
   components: {
-    ...SpectrumUIVue,
     VueLive,
     VueLiveEditor,
     VueLivePreview,
   },
   data() {
     return {
-      menuItems,
       previewComponents: {},
       previewCode: defaultTemplate,
-      sideNavIndex: '0',
     }
   },
   methods: {

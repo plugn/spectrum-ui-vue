@@ -1,15 +1,4 @@
 <template>
-  <div class="ui-page flex hbox main-start cross-start">
-    <div class="vbox">
-      <SideNav
-        multilevel
-        heading
-        :items="menuItems"
-        :selected-item.sync="sideNavIndex"
-        @update:selectedItem="onNavClick"
-        style="min-width: 160px;"
-      />
-    </div>
     <div class="vbox" style="padding: 5px; height: 300px;">
       <div class="hbox" style="padding: 5px; height: 100px;">
         <Toggle label="simple" />
@@ -117,14 +106,10 @@
         </QuickActions>
       </div>
     </div>
-
-  </div>
 </template>
 
 <script>
-  import SpectrumUIVue from '../lib/index'
   import spectrumIcons from '../spectrum-icons-list.json'
-  import menuItems from '../menu'
 
   const getIconName = index => spectrumIcons[index].match(/\w+$/)[0]
   const createIconTabs = (start, end, selected = 0) => spectrumIcons.slice(start, end)
@@ -137,9 +122,6 @@
 
   export default {
     name: 'SueDocsApp',
-    components: {
-      ...SpectrumUIVue,
-    },
     data() {
       return {
         cycleBtnIndex: 0,
@@ -154,7 +136,6 @@
           'Watch',
           'Wrench',
         ],
-        menuItems,
         menuTree: [
           {label: 'Digest', iconName: 'Star'},
           {label: 'Catalog', iconName: 'Blur', disabled: true},

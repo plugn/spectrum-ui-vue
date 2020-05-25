@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import router from './router/router'
 import App from './components/App.vue'
+import SpectrumUIVue from './lib/index'
+
+Vue.use(SpectrumUIVue)
 
 Vue.config.productionTip = false
 
