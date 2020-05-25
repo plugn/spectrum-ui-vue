@@ -1,33 +1,4 @@
-import { getNested } from '../lib/utils'
-
-export const applyInlineStyle = (el, style) =>
-  Array.from(Object.entries(style))
-    .forEach(([prop, val]) =>
-      el.style[prop] = val)
-
-/**
- * DOM Document Transformation Rules
- * key of Object is CSS Selector,
- * value is a function that transforms selected element
- */
-const defaultRules = {
-  'code': (el, {codeLevel}) => {
-    el.classList.add(`spectrum-Code${codeLevel || 3}`)
-  },
-  'h1,h2,h3,h4,h5,h6': el => {
-    const tag = el.nodeName.toLowerCase().match(/h(\d)/)
-    const level = tag && tag[1] || ''
-    level && el.classList.add(`spectrum-Heading${level}`)
-  },
-  'img': (el, params) => {
-    const style = getNested(params || {}, 'images.style')
-    if (style) {
-      applyInlineStyle(el, style)
-    }
-    el.classList.add('spectrum-Asset-image')
-  },
-  'hr': el => el.classList.add('spectrum-Rule', 'spectrum-Rule--medium')
-}
+import defaultRules from './mdRules'
 
 function walkDoc(doc, rules, params = {}) {
   let textTransformer = doc.createNodeIterator(

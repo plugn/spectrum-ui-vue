@@ -6,7 +6,7 @@ tags:
   - samples
 images:
   style:
-    maxWidth: 400px
+    maxWidth: 320px
 ---
 
 # h1 Heading
@@ -21,7 +21,7 @@ images:
 
 ___
 
-###ActionButton
+### ActionButton
 
 <action-button label="Start">Run</action-button>   
 

@@ -24,10 +24,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .spectrum a,
-  .spectrum a:visited {
-    color: inherit;
-  }
-</style>
