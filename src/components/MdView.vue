@@ -5,7 +5,7 @@
 <script>
 import SpectrumUIVue from '../lib/index'
 import domTransform from '../util/domTransforms'
-import Renderer from './Renderer'
+import Renderer from '../util/Renderer'
 
 export default {
   name: 'MdView',
