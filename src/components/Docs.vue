@@ -20,7 +20,7 @@
 
 <script>
 import MdView from './MdView'
-import { frontMark } from '../util/frontMark'
+import { frontMark } from '../scopeo/frontMark'
 
 export default {
   name: 'Docs',

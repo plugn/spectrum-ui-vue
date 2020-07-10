@@ -4,8 +4,8 @@
 
 <script>
 import SpectrumUIVue from '../lib/index'
-import domTransform from '../util/domTransforms'
-import Renderer from '../util/Renderer'
+import domTransform from '../scopeo/domTransforms'
+import Renderer from '../scopeo/Renderer'
 
 export default {
   name: 'MdView',
