@@ -45,7 +45,7 @@
     "@adobe/spectrum-css-workflow-icons": "^1.0.0",
     "@spectrum-css/spectrum-css": "^3.0.0-alpha.7",
     "@vue/cli-plugin-babel": "4.3.1",
-    "@vue/cli-service": "4.3.1",
+    "@vue/cli-service": "5.0.8",
     "@vue/component-compiler-utils": "^3.1.2",
     "front-matter": "^4.0.0",
     "loader-utils": "^2.0.0",
